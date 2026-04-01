@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Yatra+One&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-cosmic: "Yatra One", serif;
+
+  --color-blue: #0047FF;
+  --color-navy: #030712;
+  --color-navy-light: #0A1628;
+  --color-navy-card: #0D1B2E;
+  --color-cosmic-gold: #FFB800;
+  --color-cosmic-purple: #6B21A8;
+  
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-grid-drift: gridDrift 20s linear infinite;
+  --animate-gradient-shift: gradientShift 5s ease infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-rotate-bg: rotateBg 4s linear infinite;
+  --animate-spring-in: springIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-spin-slow: spin 120s linear infinite;
+  --animate-spin-medium: spin 60s linear infinite;
+  --animate-spin-fast: spin 8s linear infinite;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+  --animate-drift-1: drift1 20s ease-in-out infinite alternate;
+  --animate-drift-2: drift2 25s ease-in-out infinite alternate;
+  --animate-drift-3: drift3 18s ease-in-out infinite alternate;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-navy bg-white antialiased overflow-x-hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .ease-spring {
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .ease-out-expo {
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .text-shadow-glow {
+    text-shadow: 0 0 30px rgba(0, 71, 255, 0.4);
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes shimmer {
+  100% { left: 200%; }
+}
+@keyframes gridDrift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-40px); }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes rotateBg {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes springIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes drift1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -20px) scale(1.1); }
+}
+@keyframes drift2 {
+  0% { transform: translate(0, 0) scale(1.1); }
+  100% { transform: translate(-30px, 40px) scale(1); }
+}
+@keyframes drift3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(20px, 30px) scale(1.05); }
+}
+@keyframes pulseWave {
+  0%, 100% { opacity: 0.3; transform: scale(1); box-shadow: none; }
+  50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px currentColor; }
+}
+@keyframes drawLightning {
+  0% { stroke-dashoffset: 400; opacity: 1; filter: drop-shadow(0 0 2px #0047FF); }
+  40% { stroke-dashoffset: 0; opacity: 1; filter: drop-shadow(0 0 10px #0047FF); }
+  100% { stroke-dashoffset: 0; opacity: 0; filter: drop-shadow(0 0 0px #0047FF); }
+}
+@keyframes fillProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes slideInRight {
+  0% { transform: translateX(100%); opacity: 0; }
+  10% { transform: translateX(0); opacity: 1; }
+  90% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes floatUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  20% { transform: translateY(0); opacity: 1; }
+  80% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes textGlow {
+  0% { color: white; text-shadow: none; }
+  50% { color: #0047FF; text-shadow: 0 0 10px #0047FF; }
+  100% { color: white; text-shadow: none; }
+}
+
+/* Intersection Observer Animation Classes */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-up { opacity: 1; transform: none; }
+}
